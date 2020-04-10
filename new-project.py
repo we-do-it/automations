@@ -1,9 +1,7 @@
-import os
-import sys
-from mdutils.mdutils import MdUtils
-from git import Repo
-from gitutils import GitHelper
 import json
+import os
+
+from gitutils import GitHelper
 
 # load github token
 with open("config.json") as json_data_file:
@@ -18,7 +16,7 @@ path = "/Users/creativelambda/git"
 
 #
 # # start of script
-# os.chdir(path)
+os.chdir(path)
 print('Project creator ' + version)
 print_line()
 
@@ -35,23 +33,27 @@ while private != 'y' and private != 'n':
     print('Private? (y/n)')
     private = input()
 #
-# # create folder
+# # # create folder
 # try:
 #     os.mkdir(project_name)
 #     print('Directory created')
 # except FileExistsError:
 #     print('Project with that name already exists')
 #     sys.exit()
-
-# go inside created directory
+#
+# # go inside created directory
 # os.chdir(project_name)
 
 # create git repository
 private_param = True
 if private == 'n':
     private_param = False
-git.create_repository(project_name, private_param)
-# create markdown file
-# mdFile = MdUtils(file_name='readme', title=project_name)
-# mdFile.create_md_file()
+
+folder = path + '/' + project_name
+git.create_repository(project_name, private_param, folder)
+
+
+
+# push code to repo
+
 
